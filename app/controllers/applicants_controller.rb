@@ -22,21 +22,7 @@ class ApplicantsController < ApplicationController
       if params[:back]
         @applicant.previous_step
       elsif @applicant.last_step?
-        if params[:commit]
-          @applicant.save      
-
-          if params[:applicant][:education]
-            params[:applicant][:education].each do |e|
-              Education.create(
-                :applicant_id => @applicant,
-                :address => e.address,
-                :school_name => e.school_name,
-                :years_attended => e.years_attended,
-                :course => e.course
-              )
-            end
-          end          
-        end
+        @applicant.save  if params[:commit]          
       else
         @applicant.next_step
       end
@@ -51,6 +37,6 @@ class ApplicantsController < ApplicationController
       flash[:notice] = "applicant saved!"
       redirect_to @applicant
     end    
-  end
+  end 
   
 end

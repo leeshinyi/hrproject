@@ -5,23 +5,23 @@ class Applicant < ActiveRecord::Base
   has_many :pending_applications
   has_many :families
   has_many :references
-  has_many :questions, :through => :qanda
+  has_many :questions, :through => :qandas
 
   accepts_nested_attributes_for :educations, :reject_if => proc {|attributes| attributes[:school_name].blank? }, :allow_destroy => true
   accepts_nested_attributes_for :work_experiences, :allow_destroy => true
   accepts_nested_attributes_for :families, :allow_destroy => true
   accepts_nested_attributes_for :references, :allow_destroy => true
 
-  #validates :first_name, :middle_name, :last_name, :presence => true
-  #validates :email, :uniqueness => true
-  #validates :email, :format => { :with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i }
+
+  validates :first_name, :middle_name, :last_name, :email, :presence => true
+  validates :email, :uniqueness => true
+  validates :email, :format => { :with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i }
 
   attr_accessible :first_name, :middle_name, :last_name, :gender, :civil_status, :street, :city, 
                   :region, :zip, :birthdate, :landline, :mobile, :email, :sss, :philhealth, :pagibig, 
                   :tin, :other_skills, :abroad_plans, :how_soon, :emergency_contact, :emergency_address, 
                   :emergency_phone, :date_available_for_work, :desired_salary_range, :date_of_application,
-                  :other_observations, :educations_attributes
-                  
+                  :other_observations, :educations_attributes, :families_attributes, :work_experiences_attributes
 
   attr_writer :current_step
 
@@ -30,7 +30,7 @@ class Applicant < ActiveRecord::Base
   end
 
   def steps
-    %w[personal_info education]
+    %w[personal_info education work_experience family_background]
   end
 
   def next_step

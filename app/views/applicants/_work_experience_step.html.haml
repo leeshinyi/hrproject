@@ -1,0 +1,6 @@
+%h4 Work Experience
+#work_experiences
+  =f.semantic_fields_for :work_experiences do |we|
+    =render "work_experience_fields", :f => we
+  .links
+    =link_to_add_association "add work experience", f, :work_experiences
