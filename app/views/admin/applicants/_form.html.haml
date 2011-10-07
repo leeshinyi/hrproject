@@ -27,6 +27,16 @@
         =render "education_fields", :f => education
       .links
         =link_to_add_association "add education", f, :educations
+        
+    =f.input :other_skills
+    
+    %h4 Work Experiences
+    #work_experiences
+      =f.semantic_fields_for :work_experiences do |work|
+        =render "work_experience_fields", :f => work
+      .links
+        =link_to_add_association "add work experience", f, :work_experiences
+        
     
     =f.buttons do
       =f.commit_button "Submit"

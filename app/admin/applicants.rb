@@ -15,6 +15,10 @@ ActiveAdmin.register Applicant do
     # end
   end
   
+  show do
+    render "show"
+  end
+  
   collection_action :import_csv, :method => :post do
     # Do some CSV importing work here...
     redirect_to :action => :index, :notice => "CSV imported successfully!"
@@ -27,7 +31,6 @@ ActiveAdmin.register Applicant do
     respond_to do |format|
      @education = @applicant.educations.build(params[:applicant][:education_attributes])
      if @education.save
-       
        if @applicant.save
          format.html { redirect_to(admin_applicants_path, :notice => 'Applicant was successfully created.') }
          format.xml  { render :xml => @applicant, :status => :created, :location => @applicant }

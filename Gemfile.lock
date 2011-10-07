@@ -220,7 +220,7 @@ PLATFORMS
 
 DEPENDENCIES
   activeadmin
-  cancan
+  cancan (~> 1.6.7)
   capybara
   ckeditor
   cocoon
