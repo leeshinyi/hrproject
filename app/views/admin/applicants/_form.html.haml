@@ -1,4 +1,11 @@
 =semantic_form_for @applicant, :url => admin_applicants_path do |f|
+  -if @applicant.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@applicant.errors.count, "error")} prohibited this project from being saved:"
+      %ul
+        - @applicant.errors.full_messages.each do |msg|
+          %li= msg
+          
   =f.inputs "Personal Information" do 
     =f.input :source, :as => :select, :collection => Source.find(:all)
     =f.input :other_source
@@ -22,4 +29,4 @@
         =link_to_add_association "add education", f, :educations
     
     =f.buttons do
-      =f.commit_button "Submit"
+      =f.commit_button "Save"

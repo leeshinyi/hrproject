@@ -22,9 +22,11 @@ gem "activeadmin"
 gem "ckeditor"
 gem "paperclip"
 gem "kaminari"
+gem "frontend-helpers"
 gem "cancan", "~> 1.6.7"
 gem "sitemap_generator"
 gem 'meta-tags', :require => 'meta_tags'
+gem 'cocoon'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -42,17 +44,3 @@ group :test do
   # Pretty printed test output
   gem 'turn', :require => false
 end
-gem "haml", ">= 3.0.0"
-gem "haml-rails"
-gem "formtastic"
-gem "jquery-rails"
-gem "devise"
-gem "activeadmin"
-gem "ckeditor"
-gem "paperclip"
-gem "kaminari"
-gem "frontend-helpers"
-gem "cancan"
-gem "sitemap_generator"
-gem 'meta-tags', :require => 'meta_tags'
-gem 'cocoon'

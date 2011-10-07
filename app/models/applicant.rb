@@ -7,7 +7,7 @@ class Applicant < ActiveRecord::Base
   has_many :references
   has_many :questions, :through => :qanda
 
-  accepts_nested_attributes_for :educations, :allow_destroy => true
+  accepts_nested_attributes_for :educations, :reject_if => proc {|attributes| attributes[:school_name].blank? }, :allow_destroy => true
   accepts_nested_attributes_for :work_experiences, :allow_destroy => true
   accepts_nested_attributes_for :families, :allow_destroy => true
   accepts_nested_attributes_for :references, :allow_destroy => true
@@ -20,7 +20,9 @@ class Applicant < ActiveRecord::Base
                   :region, :zip, :birthdate, :landline, :mobile, :email, :sss, :philhealth, :pagibig, 
                   :tin, :other_skills, :abroad_plans, :how_soon, :emergency_contact, :emergency_address, 
                   :emergency_phone, :date_available_for_work, :desired_salary_range, :date_of_application,
-                  :other_observations
+                  :other_observations, :educations_attributes
+                  
+
   attr_writer :current_step
 
   def current_step
